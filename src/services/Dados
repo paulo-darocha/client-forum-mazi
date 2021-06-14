@@ -1,0 +1,244 @@
+import Categoria from "../modelos/ICategoria";
+import CategoriaTopico from "../modelos/CategoriaTopico";
+import Topico from "../modelos/ITopico";
+import IUsuario from "../modelos/IUsuario";
+
+const usuario = new IUsuario("7", "teste@teste.com", "teste1")
+
+export async function getCategorias(): Promise<Array<Categoria>> {
+  const promise = new Promise<Array<Categoria>>((res, rej) => {
+    setTimeout(() => {
+      const categories = [];
+      const programming = new Categoria("1", "Programação");
+      categories.push(programming);
+      const cooking = new Categoria("2", "Culinária");
+      categories.push(cooking);
+      const sports = new Categoria("3", "Esportes");
+      categories.push(sports);
+      const entertainment = new Categoria("4", "Entretenimento");
+      categories.push(entertainment);
+      const travel = new Categoria("5", "Viagens");
+      categories.push(travel);
+
+      res(categories);
+    }, 500);
+  });
+  return promise;
+}
+
+export async function getTopicosPorCategoria(
+  catId: string
+): Promise<Array<Topico>> {
+  const promise = new Promise<Array<Topico>>((res, rej) => {
+    setTimeout(() => {
+      const topicos: Array<Topico> = [];
+      topicos.push({
+        id: "1",
+        views: 22,
+        titulo: "Topico 1",
+        texto:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        usuario: usuario,
+        pontos: 11,
+        criadoEm: new Date(),
+        modificadoEm: new Date(),
+        respostas: [
+          {
+            id: "1",
+            views: 22,
+            pontos: 2,
+            texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue magna, suscipit rutrum lacinia quis, finibus a sem. Aliquam erat volutpat. Phasellus eget felis eget massa porta pellentesque nec vel arcu. Vestibulum convallis et velit eget porta. Praesent eu consectetur eros. Proin molestie ipsum sit amet nisi condimentum hendrerit. Sed ullamcorper orci sit amet nunc suscipit congue sed non libero. In consectetur ut sapien eget varius. Nunc gravida nulla at orci tincidunt, pretium vehicula odio euismod. Sed tincidunt felis nec ullamcorper posuere. Cras dui mauris, iaculis non tellus eu, lacinia ornare odio. ",
+            usuario: usuario,
+            criadoEm: new Date(),
+            topicoId: "1",
+          },
+        ],
+        categoria: new Categoria("1", "Programação"),
+      });
+      topicos.push({
+        id: "2",
+        views: 2,
+        titulo: "Topico 2",
+        texto:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        usuario: usuario,
+        pontos: 55,
+        criadoEm: new Date(),
+        modificadoEm: new Date(),
+        respostas: [
+          {
+            id: "1",
+            views: 22,
+            pontos: 2,
+            texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue magna, suscipit rutrum lacinia quis, finibus a sem. Aliquam erat volutpat. Phasellus eget felis eget massa porta pellentesque nec vel arcu. Vestibulum convallis et velit eget porta. Praesent eu consectetur eros. Proin molestie ipsum sit amet nisi condimentum hendrerit. Sed ullamcorper orci sit amet nunc suscipit congue sed non libero. In consectetur ut sapien eget varius. Nunc gravida nulla at orci tincidunt, pretium vehicula odio euismod. Sed tincidunt felis nec ullamcorper posuere. Cras dui mauris, iaculis non tellus eu, lacinia ornare odio. ",
+            usuario: usuario,
+            criadoEm: new Date(),
+            topicoId: "2",
+          },
+        ],
+        categoria: new Categoria("1", "Programação"),
+      });
+
+      res(topicos);
+    }, 500);
+  });
+  return promise;
+}
+
+export async function getTopCategorias(): Promise<Array<CategoriaTopico>> {
+  const promise = new Promise<Array<CategoriaTopico>>((res, rej) => {
+    setTimeout(() => {
+      const topCategories = [];
+      const js = new CategoriaTopico(
+        "1",
+        "Programação",
+        "How can I learn JavaScript"
+      );
+      topCategories.push(js);
+      const node = new CategoriaTopico(
+        "2",
+        "Programação",
+        "How can I learn Node"
+      );
+      topCategories.push(node);
+      const react = new CategoriaTopico(
+        "3",
+        "Programação",
+        "How can I learn React"
+      );
+      topCategories.push(react);
+      const french = new CategoriaTopico(
+        "4",
+        "Culinária",
+        "How do I learn French cuisine?"
+      );
+      topCategories.push(french);
+      const italian = new CategoriaTopico(
+        "5",
+        "Culinária",
+        "How do I learn Italian cuisine?"
+      );
+      topCategories.push(italian);
+      const soccer = new CategoriaTopico(
+        "6",
+        "Esportes",
+        "How can I learn to play Soccer"
+      );
+      topCategories.push(soccer);
+      const basketball = new CategoriaTopico(
+        "7",
+        "Esportes",
+        "How can I learn to play Basketball"
+      );
+      topCategories.push(basketball);
+      const baseball = new CategoriaTopico(
+        "8",
+        "Esportes",
+        "How can I learn to play Baseball"
+      );
+      topCategories.push(baseball);
+
+      res(topCategories);
+    }, 500);
+  });
+  return promise;
+}
+
+export async function getTopicoPorId(Id: string): Promise<Topico> {
+  const promise = new Promise<Topico>((res, rej) => {
+    setTimeout(() => {
+      const thread = {
+        id: "1",
+        views: 22,
+        titulo: "Topico 1",
+        texto:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        usuario: usuario,
+        pontos: 11,
+        criadoEm: new Date(),
+        modificadoEm: new Date(),
+        respostas: [
+          {
+            id: "1",
+            views: 22,
+            pontos: 2,
+            texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue magna, suscipit rutrum lacinia quis, finibus a sem. Aliquam erat volutpat. Phasellus eget felis eget massa porta pellentesque nec vel arcu. Vestibulum convallis et velit eget porta. Praesent eu consectetur eros. Proin molestie ipsum sit amet nisi condimentum hendrerit. Sed ullamcorper orci sit amet nunc suscipit congue sed non libero. In consectetur ut sapien eget varius. Nunc gravida nulla at orci tincidunt, pretium vehicula odio euismod. Sed tincidunt felis nec ullamcorper posuere. Cras dui mauris, iaculis non tellus eu, lacinia ornare odio. ",
+            usuario: usuario,
+            criadoEm: new Date(),
+            topicoId: "1",
+          },
+          {
+            id: "2",
+            views: 11,
+            pontos: 14,
+            texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue magna, suscipit rutrum lacinia quis, finibus a sem. Aliquam erat volutpat. Phasellus eget felis eget massa porta pellentesque nec vel arcu. Vestibulum convallis et velit eget porta. Praesent eu consectetur eros. Proin molestie ipsum sit amet nisi condimentum hendrerit. Sed ullamcorper orci sit amet nunc suscipit congue sed non libero. In consectetur ut sapien eget varius. Nunc gravida nulla at orci tincidunt, pretium vehicula odio euismod. Sed tincidunt felis nec ullamcorper posuere. Cras dui mauris, iaculis non tellus eu, lacinia ornare odio. ",
+            usuario: usuario,
+            criadoEm: new Date(),
+            topicoId: "1",
+          },
+        ],
+        categoria: new Categoria("1", "Programação"),
+      };
+
+      res(thread);
+    }, 500);
+  });
+  return promise;
+}
+
+export async function getTopicosUsuario(id: string): Promise<Array<Topico>> {
+  const result = new Promise<Array<Topico>>((res) => {
+    setTimeout(() => {
+      const topicos: Array<Topico> = [];
+      topicos.push({
+        id: "1",
+        views: 22,
+        titulo: "Topico 1",
+        texto:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        usuario: usuario,
+        pontos: 11,
+        criadoEm: new Date(),
+        modificadoEm: new Date(),
+        respostas: [
+          {
+            id: "1",
+            views: 22,
+            pontos: 2,
+            texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue magna, suscipit rutrum lacinia quis, finibus a sem. Aliquam erat volutpat. Phasellus eget felis eget massa porta pellentesque nec vel arcu. Vestibulum convallis et velit eget porta. Praesent eu consectetur eros. Proin molestie ipsum sit amet nisi condimentum hendrerit. Sed ullamcorper orci sit amet nunc suscipit congue sed non libero. In consectetur ut sapien eget varius. Nunc gravida nulla at orci tincidunt, pretium vehicula odio euismod. Sed tincidunt felis nec ullamcorper posuere. Cras dui mauris, iaculis non tellus eu, lacinia ornare odio. ",
+            usuario: usuario,
+            criadoEm: new Date(),
+            topicoId: "1",
+          },
+        ],
+        categoria: new Categoria("1", "Programação"),
+      });
+      topicos.push({
+        id: "2",
+        views: 2,
+        titulo: "Topico 2",
+        texto:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        usuario: usuario,
+        pontos: 55,
+        criadoEm: new Date(),
+        modificadoEm: new Date(),
+        respostas: [
+          {
+            id: "1",
+            views: 22,
+            pontos: 2,
+            texto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed augue magna, suscipit rutrum lacinia quis, finibus a sem. Aliquam erat volutpat. Phasellus eget felis eget massa porta pellentesque nec vel arcu. Vestibulum convallis et velit eget porta. Praesent eu consectetur eros. Proin molestie ipsum sit amet nisi condimentum hendrerit. Sed ullamcorper orci sit amet nunc suscipit congue sed non libero. In consectetur ut sapien eget varius. Nunc gravida nulla at orci tincidunt, pretium vehicula odio euismod. Sed tincidunt felis nec ullamcorper posuere. Cras dui mauris, iaculis non tellus eu, lacinia ornare odio. ",
+            usuario: usuario,
+            criadoEm: new Date(),
+            topicoId: "2",
+          },
+        ],
+        categoria: new Categoria("1", "Programação"),
+      });
+
+      res(topicos);
+    }, 500);
+  });
+  return result;
+}

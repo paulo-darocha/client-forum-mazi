@@ -1,0 +1,114 @@
+:root {
+  --alt-min-tela: 1000px;
+  --border-color: gray;
+  --border: solid 0.1em var(--border-color);
+}
+
+.App {
+  margin: 0 auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 0.7fr 0.7fr 1.9fr 0.7fr;
+  grid-template-rows: 2.8em 3fr;
+  grid-template-areas:
+    "superior superior superior superior"
+    "usuario esquerdo central direito";
+  gap: 1px;
+}
+
+li:not([data-slate-node="element"]) {
+  list-style: none;
+  margin-left: -20px;
+  cursor: pointer;
+}
+.superior {
+  grid-area: superior;
+  text-align: center;
+  background-color: blue;
+  color: white;
+  padding: 4px 0px 0px 0px;
+}
+
+.usuario {
+  grid-area: usuario;
+  min-height: var(--alt-min-tela);
+  background-color: blue;
+
+}
+
+.esquerdo {
+  grid-area: esquerdo;
+  min-height: var(--alt-min-tela);
+  background-color: lightsteelblue;
+}
+
+.central {
+  grid-area: central;
+  min-height: var(--alt-min-tela);
+  background-color: rgb(227, 239, 250);
+}
+
+.direito {
+  grid-area: direito;
+  min-height: var(--alt-min-tela);
+  background-color: lightsteelblue;
+}
+
+.modal-menu {
+  position: fixed;
+  min-width: 550px;
+  left: 50%;
+  top: 4.5em;
+  transform: translate(-50%);
+  border: var(--border);
+  border-radius: 5px;
+  background-color: white;
+  padding: 1em;
+  z-index: 1000; 
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.ReactModal__Html--open,
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+@media screen and (max-width: 576px){
+  .App {
+    grid-template-columns: 1fr;
+    grid-template-rows: 2.4em 3fr;
+    grid-template-areas: 
+      "superior"
+      "central";
+  }
+
+  .modal-menu {
+    min-width: 60px;
+    left: 1em;
+    right: 1em;
+    top: 3.5em;
+    transform: translate(0%);
+  }
+
+}
+
+@media screen and (max-width: 768px) and (min-width: 577px) {
+  .App {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 0.6fr 0.6fr 1.7fr;
+    grid-template-rows: 2.7em 3fr;
+    grid-template-areas:
+      "superior superior superior"
+      "usuario esquerdo central";
+    gap: 1px;
+  }
+}
+
+@media screen and (max-height: 576px) {
+  .modal-menu {
+    top: .5em;
+  }
+}

@@ -1,0 +1,26 @@
+.Topico {
+  margin: 0 auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 0.4fr 1.6fr;
+  grid-template-rows: 2.7em 3fr;
+  grid-template-areas:
+    "superior superior"
+    "usuario  central";
+  gap: 1px;
+}
+
+@media screen and (max-width: 576px){
+  .Topico {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "superior"
+      "central";
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 576px){
+  .Topico {
+    grid-template-columns: 0.5fr 1.5fr;
+  }
+}

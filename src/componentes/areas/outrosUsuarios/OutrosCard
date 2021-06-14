@@ -1,0 +1,23 @@
+import axios from "axios";
+import React, { FC, useState } from "react";
+import IUsuario from "../../../modelos/IUsuario";
+
+interface OutrosCardProps {
+  usuario: IUsuario;
+}
+
+const OutrosCard: FC<OutrosCardProps> = ({ usuario }) => {
+
+
+  return (
+    <React.Fragment>
+      <div>
+        {getImgFromServer()}
+        <span>{usuario.usuario}</span>
+      </div>
+
+    </React.Fragment>
+  );
+};
+
+export default OutrosCard;

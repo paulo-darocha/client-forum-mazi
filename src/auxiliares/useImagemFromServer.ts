@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../dataStore/AppState";
-import { TipoImagem } from "../dataStore/ImagemReducer";
+import { TipoImagem } from "../reduxStore/ImagemReducer";
+import { ReduxType } from "../reduxStore/ReduxType";
 
 
 interface ImagemResult {
@@ -10,7 +10,7 @@ interface ImagemResult {
 
 const useImgFromServer  = (): ImagemResult => {
   const dispatch = useDispatch();
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
 
   const getImgFromServer = async (id?: string) => {
     let userId = "";

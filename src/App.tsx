@@ -5,15 +5,14 @@ import Topico from "./componentes/rotas/Topico";
 import PerfilUsuario from "./componentes/rotas/PefilUsuario";
 import { useQuery } from "@apollo/client";
 import { GetCategorias } from "./graphql/graphqlQueries";
-import { TipoCategorias } from "./dataStore/CategoriasReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import useAtualizaPerfil from "./auxiliares/useAtualizaPerfil";
 import Imagens from "./auxiliares/Imagens";
 import useImgFromServer from "./auxiliares/useImagemFromServer";
-import { AppState } from "./dataStore/AppState";
-import Membros from "./componentes/areas/outrosUsuarios/Membros";
-import MembrosMobile from "./componentes/areas/outrosUsuarios/MembrosMobile";
+import { TipoCategorias } from "./reduxStore/CategoriasReducer";
+import MembrosMobile from "./componentes/outrosUsuarios/MembrosMobile";
+import { ReduxType } from "./reduxStore/ReduxType";
 
 const renderPrincipal = (props: any) => <Principal {...props} />
 const renderTopico = (props: any) => <Topico {...props} />
@@ -26,7 +25,7 @@ function App() {
   const { execPerfil, atualizaPerfil } = useAtualizaPerfil();
   const { getImgFromServer } = useImgFromServer();
   const reduxDispatch = useDispatch();
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
 
   useEffect(() => {
     //console.log("APP.EXEC_PERFIL", perfil?.usuario)

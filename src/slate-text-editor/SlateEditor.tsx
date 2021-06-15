@@ -3,7 +3,6 @@ import { Editable, withReact, useSlate, Slate } from "slate-react";
 import { Editor, Transforms, createEditor, Node } from "slate";
 import isHotkey from "is-hotkey";
 import { withHistory } from "slate-history";
-import { Button, Toolbar } from "./RichTextControls";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBold,
@@ -15,7 +14,8 @@ import {
   faListOl,
   faListUl,
 } from "@fortawesome/free-solid-svg-icons";
-import "./RichEditor.css";
+import "./SlateEditor.css";
+import { Button, Toolbar } from "./SlateControls";
 
 export const getTextFromNodes = (nodes: Node[]) => {
   return nodes.map((n: Node) => Node.string(n)).join("\n");

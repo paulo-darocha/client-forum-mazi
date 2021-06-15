@@ -3,17 +3,17 @@ import { useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Imagens from "../../auxiliares/Imagens";
-import { AppState } from "../../dataStore/AppState";
 import { AlterarSenha } from "../../graphql/graphqlMutation";
 import IResposta from "../../modelos/IResposta";
 import ITopico from "../../modelos/ITopico";
-import Superior from "../areas/Superior";
-import ComparaSenha from "../areas/auth/complementos/ComparaSenha";
-import usuarioReducer from "../areas/auth/UsuarioReducer";
+import { ReduxType } from "../../reduxStore/ReduxType";
+import ComparaSenha from "../acesso/complementos/ComparaSenha";
+import usuarioReducer from "../acesso/UsuarioReducer";
+import Superior from "../Superior";
 import ImagemPerfil from "./complementos/ImagemPerfil";
 
 const PerfilUsuario = () => {
-  const perfil = useSelector((store: AppState) => store.perfil);
+  const perfil = useSelector((store: ReduxType) => store.perfil);
   //console.log("PERFIL_USUARIO", perfil?.usuario);
   const [
     { nome, senha, confirmaSenha, msgResultado, envioDesativado },

@@ -1,5 +1,5 @@
-import { combineReducers, createStore } from "redux"
-import { rootReducer } from "./AppState";
+import { createStore } from "redux"
+import { rootReducer } from "./ReduxType";
 
 const configureStore = () => {
   return createStore(rootReducer, {});

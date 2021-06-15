@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
 import ReactModal from "react-modal";
-import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../dataStore/AppState";
+import { useSelector } from "react-redux";
+import { ReduxType } from "../reduxStore/ReduxType";
 import useImgFromServer from "./useImagemFromServer";
 
 interface ImagensProps {
@@ -25,8 +25,8 @@ const Imagens: FC<ImagensProps> = ({
 }) => {
   const [imagem, setImagem] = useState<any>();
   const [imagemNome, setImagemNome] = useState("");
-  const imgRedux = useSelector((dataStore: AppState) => dataStore.imagem);
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const imgRedux = useSelector((dataStore: ReduxType) => dataStore.imagem);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
   const { getImgFromServer } = useImgFromServer();
 
   useEffect(() => {

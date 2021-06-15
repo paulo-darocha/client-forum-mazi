@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { SenhaValida, TesteSenhaResultado } from "../../../../auxiliares/ValidadorSenha";
+import { SenhaValida, TesteSenhaResultado } from "../../../auxiliares/ValidadorSenha";
 import { autorizaEnvio } from "../AutorizaEnvio";
 
 interface ComparaSenhaProps {

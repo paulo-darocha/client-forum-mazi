@@ -1,6 +1,6 @@
 import { FC } from "react";
-import RichEditor from "../../editor/RichEditor";
 import { Node } from "slate";
+import SlateEditor from "../../../slate-text-editor/SlateEditor";
 
 interface TopicoTextProps {
   texto?: string;
@@ -19,7 +19,7 @@ const TopicoTexto: FC<TopicoTextProps> = ({
     <div className="my-2 me-1">
       <strong>Texto</strong>
       <div className="border border-success rounded-1 p-2 bg-white">
-        <RichEditor 
+        <SlateEditor 
           existingBody={texto} 
           readOnly={readOnly} 
           sendOutBody={enviaTexto}

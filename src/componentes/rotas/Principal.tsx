@@ -1,9 +1,9 @@
 import { FC } from "react";
-import Central from "../areas/central/Central";
-import Direito from "../areas/direito/Direito";
-import Esquerdo from "../areas/Esquerdo";
-import Superior from "../areas/Superior";
-import Controle from "../areas/outrosUsuarios/Usuarios";
+import Central from "../central/Central";
+import Direito from "../direito/Direito";
+import Esquerdo from "../Esquerdo";
+import Usuarios from "../outrosUsuarios/Usuarios";
+import Superior from "../Superior";
 
 const Principal: FC = () => {
   return (
@@ -11,7 +11,7 @@ const Principal: FC = () => {
       <div className="superior">
         <Superior />
       </div>
-      <Controle />
+      <Usuarios />
       <Esquerdo />
       <Central />
       <Direito />

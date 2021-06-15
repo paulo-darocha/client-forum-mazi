@@ -3,15 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { AppState } from "../../../dataStore/AppState";
+import { ReduxType } from "../../reduxStore/ReduxType";
+import ImagemPerfil from "../rotas/complementos/ImagemPerfil";
 import Login from "./Login";
 import Logout from "./Logout";
 import Registro from "./Registro";
-import ImagemPerfil from "../../rotas/complementos/ImagemPerfil";
 
 
 export const MenuRegistrar = () => {
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
   const [abreRegistro, setAbreRegistro] = useState(false);
 
   const onClickAlternaRegistro = () => {
@@ -39,7 +39,7 @@ export const MenuRegistrar = () => {
 
 
 export const MenuLogin = () => {
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
   const [abreLogin, setAbreLogin] = useState(false);
 
   const onClickAlternaLogin = () => {
@@ -67,7 +67,7 @@ export const MenuLogin = () => {
 
 
 export const PerfilAtual = () => {
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
   const history = useHistory();
 
   const onClickPerfil = () => {
@@ -99,7 +99,7 @@ export const PerfilAtual = () => {
 
 
 export const MenuLogout = () => {
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
   const [abreLogout, setAbreLogout] = useState(false);
 
   const onClickAlternaLogout = () => {

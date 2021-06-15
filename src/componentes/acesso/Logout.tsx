@@ -1,12 +1,12 @@
 import { useMutation } from "@apollo/client";
 import { FC } from "react";
 import ReactModal from "react-modal";
-import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../../../dataStore/AppState";
-import { LogoutMutation } from "../../../graphql/graphqlMutation";
-import { Perfil } from "../../../graphql/graphqlQueries";
-import useAtualizaPerfil from "../../../auxiliares/useAtualizaPerfil";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import useAtualizaPerfil from "../../auxiliares/useAtualizaPerfil";
+import { LogoutMutation } from "../../graphql/graphqlMutation";
+import { Perfil } from "../../graphql/graphqlQueries";
+import { ReduxType } from "../../reduxStore/ReduxType";
 
 export interface LogoutProps {
   aberto: boolean;
@@ -20,7 +20,7 @@ const Logout: FC<LogoutProps> = ({
     refetchQueries: [{ query: Perfil }]
   });
   const { apagaPerfil } = useAtualizaPerfil();
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
   const history = useHistory();
 
   const onClickLogout = async (e: any) => {

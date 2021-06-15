@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AppState } from "../../dataStore/AppState";
-import ICategoria from "../../modelos/ICategoria";
 import DropDown, { Option } from "react-dropdown";
 import { useHistory } from "react-router";
+import ICategoria from "../modelos/ICategoria";
+import { ReduxType } from "../reduxStore/ReduxType";
 
 const defaultLabel = "Selecione Categoria";
 
@@ -23,7 +23,7 @@ const CategoriaDropDown: FC<CategoriaDropDownProps> = ({
   navigate,
   categoriaPreSelecionada
 }) => {
-  const categorias = useSelector((dataStore: AppState) => dataStore.categorias);
+  const categorias = useSelector((dataStore: ReduxType) => dataStore.categorias);
 
   const [categoriasOption, setCategoriasOption] = 
     useState<Array<Option>>([defaultOption]);

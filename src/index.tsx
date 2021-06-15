@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from 'react-redux';
-import configureStore from './dataStore/store';
 import { BrowserRouter } from 'react-router-dom';
 import Erros from './Erros';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import configureStore from './reduxStore/store';
 
 const client = new ApolloClient({
   uri: "http://18.118.8.227:5000/graphql",

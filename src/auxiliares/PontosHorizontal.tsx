@@ -2,9 +2,8 @@ import { useMutation } from "@apollo/client";
 import { faChevronDown, faChevronUp, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
-import useAtualizaPontoTopico from "../../auxiliares/AtualizaTopicoPontos";
-import { AtualizaRespostaPonto } from "../../graphql/graphqlMutation";
-
+import { AtualizaRespostaPonto } from "../graphql/graphqlMutation";
+import useAtualizaPontoTopico from "./AtualizaTopicoPontos";
 class PontosHorizontalProps {
   pontos: number = 0;
   topicoId?: string;

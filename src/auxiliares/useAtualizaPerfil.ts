@@ -1,10 +1,10 @@
-import { QueryLazyOptions, useLazyQuery, useQuery } from "@apollo/client";
+import { QueryLazyOptions, useLazyQuery } from "@apollo/client";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../dataStore/AppState";
-import { TipoImagem } from "../dataStore/ImagemReducer";
-import { PerfilUsuarioTipo } from "../dataStore/PerfilReducer";
 import { Perfil } from "../graphql/graphqlQueries";
+import { TipoImagem } from "../reduxStore/ImagemReducer";
+import { PerfilUsuarioTipo } from "../reduxStore/PerfilReducer";
+import { ReduxType } from "../reduxStore/ReduxType";
 
 interface UseAtualizaPerfilResposta {
   execPerfil: (options?: QueryLazyOptions<Record<string, any>> | undefined) => void;
@@ -17,7 +17,7 @@ const useAtualizaPerfil = (): UseAtualizaPerfilResposta => {
   // const { data: data1 } = useQuery(Perfil);
   const reduxDispatch = useDispatch();
   const imagemDispatch = useDispatch();
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
 
   const apagaPerfil = () => {
     //console.log("APAGA_PERFIL.DATA STORE ===> NULL");

@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import CategoriaTopico from "../../../modelos/CategoriaTopico";
+import CategoriaTopico from "../../modelos/CategoriaTopico";
 
 interface CategoriaTopProps {
   categoriasTop: Array<CategoriaTopico>;

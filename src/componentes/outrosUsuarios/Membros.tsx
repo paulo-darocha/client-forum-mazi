@@ -1,9 +1,8 @@
 import { useQuery } from "@apollo/client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLarguraTela } from "../../../auxiliares/useLarguraTela";
-import { GetUsuariosAtivos } from "../../../graphql/graphqlQueries";
-import semfoto from "../../../auxiliares/semfoto.png";
+import semfoto from "../../auxiliares/semfoto.png";
+import { GetUsuariosAtivos } from "../../graphql/graphqlQueries";
 
 interface RespostaImagem {
   imgBlob: any;
@@ -12,7 +11,6 @@ interface RespostaImagem {
 
 const Membros = () => {
   const { data: dados } = useQuery(GetUsuariosAtivos);
-  const { largura } = useLarguraTela();
   const [membros, setMembros] = useState<JSX.Element | undefined>();
   useEffect(() => {
     if (dados) {

@@ -1,13 +1,13 @@
 import { useMutation } from "@apollo/client";
 import React, { FC, useReducer, useState } from "react";
 import ReactModal from "react-modal";
-import { LoginMutation } from "../../../graphql/graphqlMutation";
-import { Perfil } from "../../../graphql/graphqlQueries";
-import useAtualizaPerfil from "../../../auxiliares/useAtualizaPerfil";
+import PromptModal from "../../auxiliares/PromptModal";
+import useAtualizaPerfil from "../../auxiliares/useAtualizaPerfil";
+import useImgFromServer from "../../auxiliares/useImagemFromServer";
+import { LoginMutation } from "../../graphql/graphqlMutation";
+import { Perfil } from "../../graphql/graphqlQueries";
 import { autorizaEnvio } from "./AutorizaEnvio";
 import usuarioReducer from "./UsuarioReducer";
-import useImgFromServer from "../../../auxiliares/useImagemFromServer";
-import PromptModal from "../../../auxiliares/PromptModal";
 
 export interface LoginProps {
   aberto: boolean;

@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GetCategorias } from "../../graphql/graphqlQueries";
-import { useLarguraTela } from "../../auxiliares/useLarguraTela";
-import Categoria from "../../modelos/ICategoria";
+import { useLarguraTela } from "../auxiliares/useLarguraTela";
+import { GetCategorias } from "../graphql/graphqlQueries";
+import ICategoria from "../modelos/ICategoria";
 
 const Esquerdo = () => {
   const { loading, error, data } = useQuery(GetCategorias);
@@ -20,7 +20,7 @@ const Esquerdo = () => {
       setCategorias(<span>Um erro ocorreu ao carregar as Categorias...</span>)
     } else {
       if (data && data.getCategorias) {
-        const categorias = data.getCategorias.map((cat: Categoria) => {
+        const categorias = data.getCategorias.map((cat: ICategoria) => {
           return <li className="h6 py-1" key={cat.id}>
             <Link to={`/topicosdacateg/${cat.id}`}>
               {cat.nome}

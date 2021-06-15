@@ -1,5 +1,6 @@
-import { useLarguraTela } from "../../../auxiliares/useLarguraTela";
+import { useLarguraTela } from "../../auxiliares/useLarguraTela";
 import Membros from "./Membros";
+
 
 const Usuarios = () => {
   const { largura } = useLarguraTela();

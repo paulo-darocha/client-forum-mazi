@@ -1,8 +1,8 @@
 import { faChevronDown, faChevronUp, faHeart, faReplyAll } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
-import { useLarguraTela } from "../../auxiliares/useLarguraTela";
-import useAtualizaPontoTopico from "../../auxiliares/AtualizaTopicoPontos";
+import useAtualizaPontoTopico from "./AtualizaTopicoPontos";
+import { useLarguraTela } from "./useLarguraTela";
 
 export class PontosVerticalProps {
   pontos: number = 0;

@@ -1,8 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import Superior from "../areas/Superior";
-import PontosVertical from "../comum/PontosVertical";
-import Usuario from "../areas/outrosUsuarios/Usuarios";
 import RespostasCard from "./complementos/RespostasCard";
 import TopicoCategoria from "./complementos/TopicoCategoria";
 import TopicoNome from "./complementos/TopicoNome";
@@ -13,14 +10,17 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { GetTopicoPorId } from "../../graphql/graphqlQueries";
 import ITopico from "../../modelos/ITopico";
 import { useSelector } from "react-redux";
-import { AppState } from "../../dataStore/AppState";
 import { CriarTopico } from "../../graphql/graphqlMutation";
 import ICategoria from "../../modelos/ICategoria";
-import { getTextFromNodes } from "../editor/RichEditor";
 import { useLarguraTela } from "../../auxiliares/useLarguraTela";
-import PontosHorizontal from "../comum/PontosHorizontal";
 import { Node } from "slate";
 import Resposta from "./complementos/Resposta";
+import { getTextFromNodes } from "../../slate-text-editor/SlateEditor";
+import Superior from "../Superior";
+import Usuarios from "../outrosUsuarios/Usuarios";
+import PontosHorizontal from "../../auxiliares/PontosHorizontal";
+import PontosVertical from "../../auxiliares/PontosVertical";
+import { ReduxType } from "../../reduxStore/ReduxType";
 
 
 const topicoReducer = (dataStore: any, action: any) => {
@@ -56,7 +56,7 @@ const Topico = () => {
   const [topico, setTopico] = useState<ITopico | undefined>();
   const [readOnly, setReadOnly] = useState(false);
   const { id }: any = useParams();
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
 
   //console.log("TOPICO.PERFIL", perfil);
   const [
@@ -178,7 +178,7 @@ const Topico = () => {
 
 
       <div className="usuario">
-        <Usuario />
+        <Usuarios />
       </div>
 
       <div className=" central container-fluid">

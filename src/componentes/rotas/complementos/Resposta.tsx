@@ -1,12 +1,12 @@
 import { useMutation } from "@apollo/client";
 import React, { FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AppState } from "../../../dataStore/AppState";
 import { CriarResposta } from "../../../graphql/graphqlMutation";
-import PontosHorizontal from "../../comum/PontosHorizontal";
-import RichEditor from "../../editor/RichEditor";
 import UsuarioEData from "./UsuarioEData";
 import { Node } from "slate";
+import { ReduxType } from "../../../reduxStore/ReduxType";
+import PontosHorizontal from "../../../auxiliares/PontosHorizontal";
+import SlateEditor from "../../../slate-text-editor/SlateEditor";
 
 interface RespostaProps {
   texto?: string;
@@ -30,7 +30,7 @@ const Resposta: FC<RespostaProps> = ({
   atualizaTopico,
 }) => {
 
-  const perfil = useSelector((dataStore: AppState) => dataStore.perfil);
+  const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
   const [execCriaResposta] = useMutation(CriarResposta);
   const [aviso, setAviso] = useState("");
   const [auxTexto, setAuxTexto] = useState("");
@@ -86,7 +86,7 @@ const Resposta: FC<RespostaProps> = ({
         ) : null}
       </div>
       <div className="border border-success rounded-1 p-2 mb-2 bg-white">
-        <RichEditor 
+        <SlateEditor 
           existingBody={auxTexto} 
           readOnly={readOnly} 
           sendOutBody={recebeTexto}

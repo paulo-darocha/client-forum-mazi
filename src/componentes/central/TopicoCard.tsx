@@ -2,12 +2,11 @@ import { faEye, faHeart, faReplyAll } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useLarguraTela } from "../../../auxiliares/useLarguraTela";
-import Topico from "../../../modelos/ITopico";
-import RichEditor from "../../editor/RichEditor";
-
+import { useLarguraTela } from "../../auxiliares/useLarguraTela";
+import ITopico from "../../modelos/ITopico";
+import SlateEditor from "../../slate-text-editor/SlateEditor";
 interface TopicoCardProps {
-  topico: Topico;
+  topico: ITopico;
 }
 
 const TopicoCard: FC<TopicoCardProps> = ({ topico }) => {
@@ -20,7 +19,7 @@ const TopicoCard: FC<TopicoCardProps> = ({ topico }) => {
     history.push("/topico/" + topico.id);
   }
 
-  const getPontosMobile = (topico: Topico) => {
+  const getPontosMobile = (topico: ITopico) => {
     if (largura <= 768) {
       return (
         <label className="m-2 text-danger">
@@ -32,7 +31,7 @@ const TopicoCard: FC<TopicoCardProps> = ({ topico }) => {
     return null;
   };
 
-  const getRespostasMobile = (topico: Topico) => {
+  const getRespostasMobile = (topico: ITopico) => {
     if (largura <= 768) {
       return (
         <label className="m-2 text-primary">
@@ -89,7 +88,7 @@ const TopicoCard: FC<TopicoCardProps> = ({ topico }) => {
             data-topico-id={topico.id}
           >
             <div className="mb-1">
-              <RichEditor existingBody={topico.texto} readOnly={true} />
+              <SlateEditor existingBody={topico.texto} readOnly={true} />
             </div>
           </div>
 

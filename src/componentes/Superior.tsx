@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import { useHistory } from "react-router-dom";
-import { useLarguraTela } from "../../auxiliares/useLarguraTela";
-import { ListaUsuarios, MenuLogin, MenuLogout, MenuRegistrar, PerfilAtual } from "./auth/MenuUsuario";
-import Membros from "./outrosUsuarios/Membros";
+import { useLarguraTela } from "../auxiliares/useLarguraTela";
+import { ListaUsuarios, MenuLogin, MenuLogout, MenuRegistrar, PerfilAtual } from "./acesso/MenuUsuario";
 
 const Superior = () => {
   const [abreMenu, setAbreMenu] = useState(false);

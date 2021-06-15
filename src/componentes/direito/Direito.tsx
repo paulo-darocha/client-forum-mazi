@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import groupBy from "lodash/groupBy";
 import { useEffect, useState } from "react";
-import { useLarguraTela } from "../../../auxiliares/useLarguraTela";
-import { GetTopCategoriaTopico } from "../../../graphql/graphqlQueries";
+import { useLarguraTela } from "../../auxiliares/useLarguraTela";
+import { GetTopCategoriaTopico } from "../../graphql/graphqlQueries";
 import CategoriaTop from "./CategoriaTop";
 
 const Direito = () => {

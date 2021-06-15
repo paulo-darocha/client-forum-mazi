@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { useLarguraTela } from "../../../auxiliares/useLarguraTela";
-import Categoria from "../../../modelos/ICategoria";
-import CategoriaDropDown from "../../comum/CategoriasDropDown";
+import CategoriaDropDown from "../../auxiliares/CategoriasDropDown";
+import { useLarguraTela } from "../../auxiliares/useLarguraTela";
+import ICategoria from "../../modelos/ICategoria";
 
 interface CategoriaAtivaProps {
-  categoria?: Categoria | undefined;
+  categoria?: ICategoria | undefined;
 }
 
 const CategoriaAtiva: FC<CategoriaAtivaProps> = ({categoria}) => {

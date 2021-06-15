@@ -9,4 +9,4 @@ export const rootReducer = combineReducers({
   imagem: ImagemReducer
 });
 
-export type AppState = ReturnType<typeof rootReducer>
+export type ReduxType = ReturnType<typeof rootReducer>

@@ -24,7 +24,7 @@ const Direito = () => {
     }
   }, [gqlData]);
 
-  if (largura <= 768) { return null; }
+  if (largura <= 576) { return null; }
 
   return <div className="direito">{categoriasTop}</div>
 

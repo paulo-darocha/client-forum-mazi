@@ -44,7 +44,7 @@ const PontosHorizontal: FC<PontosHorizontalProps> = ({
     <span className="d-inline-flex">
       <div className="mx-3">
         <FontAwesomeIcon icon={faChevronUp}
-          onClick={topicoId ? onClickSomaPonto : onClickSomaPontoTop}
+          onClick={topicoId ? onClickSomaPontoTop : onClickSomaPonto}
         />
       </div>
       {pontos}

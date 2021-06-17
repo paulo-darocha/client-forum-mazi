@@ -26,7 +26,7 @@ const PontosVertical: FC<PontosVerticalProps> = ({
 
   if (largura > 768) {
     return (
-      <div className="flex-column text-center">
+      <div className="d-flex flex-column align-items-center">
         <div>
           <div style={{ cursor: "pointer" }}>
             <FontAwesomeIcon icon={faChevronUp}
@@ -34,7 +34,7 @@ const PontosVertical: FC<PontosVerticalProps> = ({
               onClick={onClickSomaPontoTop}
             />
           </div>
-          {pontos}
+          <span className="text-center">{pontos}</span>
           <div style={{ cursor: "pointer" }}>
             <FontAwesomeIcon icon={faChevronDown}
               className="mb-1 mt-1"

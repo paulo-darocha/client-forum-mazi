@@ -18,6 +18,7 @@ export const GetTopicosPorCategoria = gql `
       ... on TopicoArray {
         topicos {
           id
+          criadoEm
           titulo
           texto
           views
@@ -47,6 +48,7 @@ export const GetTopicosRecentes = gql `
       ... on TopicoArray {
         topicos {
           id
+          criadoEm
           titulo
           texto
           views
@@ -153,6 +155,18 @@ export const GetUsuariosAtivos = gql `
       usuarios {
         id
         usuario
+        criadoEm
+        topicos {
+          id
+          titulo
+        }
+        respostas {
+          id
+          texto
+          topico {
+            id
+          }
+        }
       }
     }
   }

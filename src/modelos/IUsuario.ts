@@ -6,6 +6,7 @@ export default class IUsuario {
     public id: string,
     public email: string,
     public usuario: string,
+    public criadoEm: Date,
     public topicos?: Array<ITopico>,
     public respostas?: Array<IResposta>
   ) {}

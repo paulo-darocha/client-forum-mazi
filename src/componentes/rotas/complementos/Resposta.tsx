@@ -96,7 +96,7 @@ const Resposta: FC<RespostaProps> = ({
       {!readOnly && topicoId ? (
         <React.Fragment>
           <div>
-            <button
+            <button className="mt-2 btn btn-success float-end"
               onClick={onClickPostar}
             >
               Postar Resposta

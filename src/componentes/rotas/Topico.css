@@ -2,11 +2,11 @@
   margin: 0 auto;
   max-width: 1200px;
   display: grid;
-  grid-template-columns: 0.4fr 1.6fr;
-  grid-template-rows: 2.7em 3fr;
+  grid-template-columns: 1.6fr 0.4fr;
+  grid-template-rows: 4em 3fr;
   grid-template-areas:
     "superior superior"
-    "usuario  central";
+    "central direito";
   gap: 1px;
 }
 
@@ -21,6 +21,6 @@
 
 @media screen and (max-width: 768px) and (min-width: 576px){
   .Topico {
-    grid-template-columns: 0.5fr 1.5fr;
+    grid-template-columns: 1.5fr 0.5fr;
   }
 }

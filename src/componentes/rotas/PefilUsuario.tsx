@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Imagens from "../../auxiliares/Imagens";
-import { AlterarSenha } from "../../graphql/graphqlMutation";
+import { AlterarSenha, ApagaUsuarioMutation } from "../../graphql/graphqlMutation";
 import IResposta from "../../modelos/IResposta";
 import ITopico from "../../modelos/ITopico";
 import { ReduxType } from "../../reduxStore/ReduxType";
@@ -11,6 +11,13 @@ import ComparaSenha from "../acesso/complementos/ComparaSenha";
 import usuarioReducer from "../acesso/UsuarioReducer";
 import Superior from "../Superior";
 import ImagemPerfil from "./complementos/ImagemPerfil";
+import "../rotas/Topico.css";
+import Usuarios from "../outrosUsuarios/Usuarios";
+import Esquerdo from "../Esquerdo";
+import Direito from "../direito/Direito";
+import SlateEditor, { getTextFromNodes } from "../../slate-text-editor/SlateEditor";
+import Resposta from "./complementos/Resposta";
+import ReactModal from "react-modal";
 
 const PerfilUsuario = () => {
   const perfil = useSelector((store: ReduxType) => store.perfil);
@@ -30,6 +37,9 @@ const PerfilUsuario = () => {
   const [respostas, setRespostas] = useState<JSX.Element | undefined>();
   const [execAlterarSenha] = useMutation(AlterarSenha);
   const [aberto, setAberto] = useState(false);
+  const [aviso, setAviso] = useState(false);
+  const [execApagaUsuario] = useMutation(ApagaUsuarioMutation);
+  const history = useHistory();
 
   const onClickAlterna = () => {
     setAberto(!aberto);
@@ -44,8 +54,11 @@ const PerfilUsuario = () => {
 
       const topicos = perfil.topicos?.map((topico: ITopico) => {
         return (
-          <li key={`top-${topico.id}`}>
-            <Link to={`/topico/${topico.id}`}>
+          <li key={`top-${topico.id}`}
+            className="list-group-item m-2 border border-success rounded-1"
+            style={{ marginLeft: "-50px", textDecoration: "none" }}
+          >
+            <Link to={`/topico/${topico.id}`} style={{ textDecoration: "none" }}>
               {topico.titulo}
             </Link>
           </li>
@@ -56,11 +69,16 @@ const PerfilUsuario = () => {
 
       //console.log("PERFIL_USUARIO", perfil.usuario);
       const respostas = perfil.respostas?.map((resposta: IResposta) => {
+        console.log(resposta.texto)
         return (
-          <li key={`top-${resposta.id}`}>
+          <li key={`top-${resposta.id}`} className="my-2">
             <Link to={`/topico/${resposta.topico.id}`}>
-              {resposta.texto.length <= 35 ? resposta.texto
-                : resposta.texto.substring(0, 35) + " ..."}
+              <small>
+                <SlateEditor
+                  existingBody={resposta.texto}
+                  readOnly={true}
+                />
+              </small>
             </Link>
           </li>
         );
@@ -90,75 +108,115 @@ const PerfilUsuario = () => {
     //console.log("ALTERA_SENHA", msgResultado);
   };
 
+  const onClickApagaPerfil = (e: any) => {
+    e.preventDefault()
+    setAviso(true);
+  };
+
+  const onClickConfirmaApaga = () => {
+    setAviso(false);
+  }
+
   return (
+
     <div
-      className="container"
-      style={{ maxWidth: "800px" }}
+      className="App"
+    // style={{ maxWidth: "800px" }}
     >
-      <div className="superior" style={{ minHeight: "40px" }}>
+      <ReactModal
+        className="modal-menu text-center"
+        ariaHideApp={false}
+        isOpen={aviso}
+        shouldCloseOnOverlayClick={true}
+      >
+        <div>
+          <div className="m-5">
+            A função 'Apagar Perfil' não está implementada
+          </div>
+          <button className="mx-3 mb-3 btn btn-primary" style={{minWidth: "120px"}}
+            onClick={onClickConfirmaApaga}
+          >OK</button>
+          <button className="mx-3 mb-3 btn btn-secondary" style={{minWidth: "120px"}}
+            onClick={() => setAviso(false)}
+          >Cancela</button>
+        </div>
+      </ReactModal>
+
+      <div className="superior" style={{ minHeight: "4em" }}>
         <Superior />
       </div>
+      <Usuarios />
+      <Esquerdo />
+      <Direito />
 
-      <form>
-      <div className="py-2"
+      <div className="central p-2">
+        <form>
+          <div className="py-2"
             onClick={onClickAlterna}
             style={{ cursor: "pointer" }}
           >
-            <div className="float-end">
+            <div className="float-end pb-2">
               <ImagemPerfil altura="150" />
             </div>
-              
+
           </div>
-        <div className="my-2">
-          <strong className="h5">Perfil do Usuário:</strong>
-          <label className="mx-2 h5">{nome}</label>
-          <div><small>
-            Clique na imagem para alterar a foto do perfil
-          </small></div>
-         
+          <div className="my-2">
+            <strong className="h5">Perfil do Usuário:</strong>
+            <label className="mx-2 h5">{nome}</label>
+            <div><small>
+              Clique na imagem para alterar a foto do perfil
+            </small></div>
 
-          <Imagens aberto={aberto}
-            onClickAlterna={onClickAlterna} />
-        </div>
 
-        <div>
-          <div>
-            <span className="h6">Alterar Senha: </span>
-            <ComparaSenha
-              dispatch={dispatchLocal}
-              senha={senha}
-              confirmaSenha={confirmaSenha}
-            />
-            <button
-              className="btn btn-primary my-1"
-              disabled={envioDesativado}
-              onClick={onClickAlteraSenha}
-            >
-              Alterar Senha
-            </button>
+            <Imagens aberto={aberto}
+              onClickAlterna={onClickAlterna} />
           </div>
 
           <div>
-            <label>{msgResultado}</label>
-          </div>
-        </div>
+            <div>
+              <span className="h6">Alterar Senha: </span>
+              <ComparaSenha
+                dispatch={dispatchLocal}
+                senha={senha}
+                confirmaSenha={confirmaSenha}
+              />
+              <button
+                className="btn btn-primary m-1"
+                disabled={envioDesativado}
+                onClick={onClickAlteraSenha}
+              >
+                Alterar Senha
+              </button>
+              <button className="btn btn-warning float-end m-1"
+                onClick={onClickApagaPerfil}
+              >
+                Apaga Perfil
+              </button>
+            </div>
 
-        <div>
-          <hr />
-          <div>
-            <div><strong>Tópicos Postados</strong></div>
-            <label className="ms-3 my-1">
-              {topicos}
-            </label>
+            <div>
+              <label>{msgResultado}</label>
+            </div>
           </div>
+
           <div>
-            <div><strong>Respostas Postadas</strong></div>
-            <label className="ms-3 my-1">
-              {respostas}
-            </label>
+            <hr />
+            <div>
+              <div><strong>Tópicos Postados</strong></div>
+              <label className="ms-3 my-1">
+                {topicos}
+              </label>
+            </div>
+            <div>
+              <div><strong>Respostas Postadas</strong></div>
+              <label className="mx-3 my-1">
+                {respostas}
+              </label>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
+
     </div>
   );
 

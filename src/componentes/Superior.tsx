@@ -16,8 +16,8 @@ const Superior = () => {
       return (
         <FontAwesomeIcon
           onClick={onClickAlterna}
-          icon={faBars} size="lg"
-          className="float-start mx-2"
+          icon={faBars} size="2x"
+          className="float-end me-3 my-2"
           style={{ cursor: "pointer" }}
         />
       );
@@ -41,43 +41,43 @@ const Superior = () => {
   return (
     <React.Fragment>
       <ReactModal
-        className="modal-menu"
+        className="modal-menu ps-3"
         isOpen={abreMenu}
         onRequestClose={onClickFechar}
         shouldCloseOnOverlayClick={true}
       >
-        <span className="m-2"><MenuLogin /></span>
-        <span className="m-2"><MenuRegistrar /></span>
-        <span className="m-2"><PerfilAtual /></span>
-        <span className="m-2"><MenuLogout /></span>
-        <span className="m-2"><ListaUsuarios /></span>
+        <div className="ms-1 my-3"><MenuLogin /></div>
+        <div className="ms-1 my-3"><MenuRegistrar /></div>
+        <div className="ms-1 my-3"><PerfilAtual /></div>
+        <div className="ms-1 my-3"><MenuLogout /></div>
+        <div className="ms-1 my-3"><ListaUsuarios /></div>
       </ReactModal>
 
       <nav>
         { largura > 576 ? (
         <label className="float-end mx-2">
           <div className="d-inline-flex mx-2">
-            <span className="my-0"><PerfilAtual /></span>
-            <span className="my-1"><MenuLogout /></span>
+            <span className="my-2"><PerfilAtual /></span>
+            <span className="my-2"><MenuLogout /></span>
           </div>
           <div className="d-inline-flex mx-2">
-            <span className="my-1"><MenuLogin /></span>
-            <span className="my-1"><MenuRegistrar /></span>
+            <span className="my-2"><MenuLogin /></span>
+            <span className="my-2"><MenuRegistrar /></span>
           </div>
         </label>
       ) : null}
 
         {mobileMenu()}
-
-      <label 
-        className="h5 mt-1"
-        onClick={onClickSuperior} 
-        style={{ cursor: "pointer" }}
+      <div className="float-start ms-3 mt-2 d-flex flex-column menuIn" 
+        onClick={onClickSuperior} style={{ cursor: "pointer" }}
       >
-        <span className="float-start" >
-          <FontAwesomeIcon icon={faHome} />
-        </span>
-        <strong className="ms-3">FORUM REACT-JS</strong>
+        <FontAwesomeIcon icon={faHome} size="lg" className="ms-1" />
+        <small>home</small>
+      </div>
+      <label 
+        className="h5 ms-4 mt-2 float-start"
+      >
+        <strong>FORUM REACT-JS</strong>
       </label>
     </nav>
 

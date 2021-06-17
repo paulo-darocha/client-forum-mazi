@@ -6,17 +6,15 @@ import Membros from "./Membros";
 const MembrosMobile = () => {
   const { largura } = useLarguraTela();
 
-  if (largura < 576) {
-    
     return (
       <div> 
-        <nav className="superior">
+        <nav className="superior" style={{minHeight: "4em"}}>
           <Superior />
         </nav>
         <Membros />
       </div>
     );
-  }
+  
   
   return <Membros />
 };

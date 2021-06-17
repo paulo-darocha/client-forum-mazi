@@ -19,7 +19,7 @@ export interface RegistroProps {
 const Registro: FC<RegistroProps> = ({ aberto, onClickAlterna }) => {
 
   const [execRegistro] = useMutation(RegistroMutation);
-  const [execApagaUsuario] = useMutation(ApagaUsuarioMutation)
+  const [execApagaUsuario] = useMutation(ApagaUsuarioMutation);
   const [mostraImg, setMostraImg] = useState(false);
   const [registrado, setRegistrado] = useState(false);
   const [novoUsuarioId, setNovoUsuarioId] = useState("");
@@ -141,6 +141,7 @@ const Registro: FC<RegistroProps> = ({ aberto, onClickAlterna }) => {
         className="modal-menu"
         ariaHideApp={false}
         isOpen={aberto}
+        closeTimeoutMS={200}
         onRequestClose={onClickCancelar}
         shouldCloseOnOverlayClick={false}
         onAfterClose={() => setRegistrado(false)}

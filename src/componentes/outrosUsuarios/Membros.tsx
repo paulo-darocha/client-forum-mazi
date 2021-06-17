@@ -1,10 +1,11 @@
 import { useQuery } from "@apollo/client";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import semfoto from "../../auxiliares/semfoto.png";
 import { GetUsuariosAtivos } from "../../graphql/graphqlQueries";
+import PerfilMembros from "./PerfilMembros";
 
-interface RespostaImagem {
+export interface RespostaImagem {
   imgBlob: any;
   imgBlobURL: string
 }
@@ -12,11 +13,21 @@ interface RespostaImagem {
 const Membros = () => {
   const { data: dados } = useQuery(GetUsuariosAtivos);
   const [membros, setMembros] = useState<JSX.Element | undefined>();
+  const [currentIndex, setCurrentIndex] = useState(-1);
+  const [bgColor, setBgColor] = useState("");
+  const [foto, setFoto] = useState<Array<RespostaImagem>>([{
+    imgBlob: "", imgBlobURL: semfoto
+  }]);
+
+  const onClickFechar = () => {
+    setCurrentIndex(-1);
+  };
+
   useEffect(() => {
     if (dados) {
       getUsuarios();
     }
-  }, [dados]);
+  }, [dados, bgColor]);
 
   const getImgFromServer = async (id: string): Promise<RespostaImagem> => {
     const foto = await axios.get(`http://18.118.8.227:5000/imagem/${id}`, {
@@ -50,25 +61,30 @@ const Membros = () => {
         //console.log("IMAGEM INSIDE FOR LOOP",)
       }
     }
-
+    setFoto(fotos);
     return fotos;
   };
 
   const getUsuarios = () => {
     let cards: Array<JSX.Element>;
+    console.log(dados.getUsuariosAtivos.usuarios);
 
     getCards().then(resposta => {
       cards = resposta.map((foto, i) => {
         //console.log("======= IMAGENS INSIDE GET_USUARIOS.MAP")
         return (
-          <div className="my-2 me-2 border" style={{marginLeft: "-20px"}}>
-            <img src={foto.imgBlobURL} alt="FOTO" height="40" width="40"
-              style={{objectFit: "cover"}}
-            />
-            <span className="ms-2">
-              {dados.getUsuariosAtivos.usuarios[i].usuario}
-            </span>
-          </div>
+            <div className={`my-2 me-3 border rounded-3 menuIn`}
+              style={{marginLeft: "-20px", cursor: "pointer"}}
+              onClick={() => setCurrentIndex(i)}
+            >
+                <img src={foto.imgBlobURL} alt="FOTO" height="40" width="40"
+                  style={{objectFit: "cover"}}
+                />
+                <span className="ms-2">
+                  {dados.getUsuariosAtivos.usuarios[i].usuario}
+                </span>
+              
+            </div>
         );
       });
       return cards;
@@ -76,12 +92,23 @@ const Membros = () => {
   }
 
   return (
-    <div>
-      <div className="bg-transparent">USUÁRIOS</div>
-      <div className="usuario text-white pt-3">
-        {membros}
-      </div>
-    </div>  
+    
+    <React.Fragment>
+      {console.log("RE")}
+      {currentIndex >= 0 ? (<PerfilMembros 
+        aberto={true}
+        onClickFechar={onClickFechar}
+        usuario={dados.getUsuariosAtivos.usuarios[currentIndex]}
+        foto={foto[currentIndex]}
+      />) : null}      
+      
+      <div>
+        <div className="usuario text-white pt-3">
+          <span className={`ms-3 mb-2`}>USUÁRIOS</span>
+          {membros}
+        </div>
+      </div> 
+    </React.Fragment>
   );
 };
 export default Membros;

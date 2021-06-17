@@ -17,10 +17,10 @@ import { Node } from "slate";
 import Resposta from "./complementos/Resposta";
 import { getTextFromNodes } from "../../slate-text-editor/SlateEditor";
 import Superior from "../Superior";
-import Usuarios from "../outrosUsuarios/Usuarios";
 import PontosHorizontal from "../../auxiliares/PontosHorizontal";
 import PontosVertical from "../../auxiliares/PontosVertical";
 import { ReduxType } from "../../reduxStore/ReduxType";
+import Direito from "../direito/Direito";
 
 
 const topicoReducer = (dataStore: any, action: any) => {
@@ -57,6 +57,10 @@ const Topico = () => {
   const [readOnly, setReadOnly] = useState(false);
   const { id }: any = useParams();
   const perfil = useSelector((dataStore: ReduxType) => dataStore.perfil);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   //console.log("TOPICO.PERFIL", perfil);
   const [
@@ -177,8 +181,8 @@ const Topico = () => {
       </div>
 
 
-      <div className="usuario">
-        <Usuarios />
+      <div className="direito">
+        <Direito />
       </div>
 
       <div className=" central container-fluid">

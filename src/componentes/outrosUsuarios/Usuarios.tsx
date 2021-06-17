@@ -5,11 +5,15 @@ import Membros from "./Membros";
 const Usuarios = () => {
   const { largura } = useLarguraTela();
 
-  if (largura < 576) {
+  if (largura < 768) {
     return null;
   }
   
-  return <Membros />
+  return (
+    <div>
+      <Membros />
+    </div>
+  );
 };
 
 export default Usuarios;

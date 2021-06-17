@@ -1,4 +1,4 @@
-import { faRegistered, faSignInAlt, faSignOutAlt, faUser, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faRegistered, faSignInAlt, faSignOutAlt, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -24,7 +24,7 @@ export const MenuRegistrar = () => {
       {perfil ? null : (
         <div className="px-2" style={{ cursor: "pointer" }}>
           <FontAwesomeIcon icon={faRegistered} />
-          <span className="ps-2" onClick={onClickAlternaRegistro}>
+          <span className="ps-2 menuIn" onClick={onClickAlternaRegistro}>
             Registrar
           </span>
           <Registro 
@@ -51,7 +51,7 @@ export const MenuLogin = () => {
       {perfil ? null : (
         <div className="px-2" style={{ cursor: "pointer" }}>
           <FontAwesomeIcon icon={faSignInAlt} />
-          <span className="ps-2" onClick={onClickAlternaLogin}>
+          <span className="ps-2 menuIn" onClick={onClickAlternaLogin}>
             Login
           </span>
           <Login
@@ -86,7 +86,7 @@ export const PerfilAtual = () => {
             <ImagemPerfil altura="30"/>
           </span>
           {/* <FontAwesomeIcon icon={faUser}/> */}
-          <span className="p-2">
+          <span className="p-2 menuIn" >
             {perfil?.usuario || "USUÁRIO"}
           </span>
 
@@ -109,16 +109,16 @@ export const MenuLogout = () => {
   return (
     <React.Fragment>
       {perfil ? (
-        <li className="ps-3"  style={{ cursor: "pointer" }}>
+        <div className="ps-2"  style={{ cursor: "pointer" }}>
           <FontAwesomeIcon icon={faSignOutAlt} />
-          <span className="ps-1" onClick={onClickAlternaLogout}>
+          <span className="ps-1 menuIn" onClick={onClickAlternaLogout}>
             Logout
           </span>
           <Logout 
             aberto={abreLogout}
             onClickAlterna={onClickAlternaLogout}
           />
-        </li>
+        </div>
       ) : null}
     </React.Fragment>
   );
@@ -128,13 +128,13 @@ export const MenuLogout = () => {
 export const ListaUsuarios = () => {
 
   return (
-        <li className="ps-4 text-dark"  style={{ cursor: "pointer" }}>
-          <Link to="/usuarios">
+        <div className="ps-2 text-dark"  style={{ cursor: "pointer" }}>
+          <Link to="/usuarios" className="text-decoration-none text-dark">
             <FontAwesomeIcon icon={faUsers} />
             <span className="ps-1">
               Usuários
             </span>
           </Link>
-        </li>
+        </div>
   );
 };

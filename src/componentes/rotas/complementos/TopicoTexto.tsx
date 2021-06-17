@@ -18,7 +18,7 @@ const TopicoTexto: FC<TopicoTextProps> = ({
   return (
     <div className="my-2 me-1">
       <strong>Texto</strong>
-      <div className="border border-success rounded-1 p-2 bg-white">
+      <div className="border border-white rounded-1 p-2 bg-white">
         <SlateEditor 
           existingBody={texto} 
           readOnly={readOnly} 

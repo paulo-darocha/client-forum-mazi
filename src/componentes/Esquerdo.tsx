@@ -35,6 +35,6 @@ const Esquerdo = () => {
   if (largura <= 576) {
     return null;
   }
-  return <h6 className="esquerdo pt-2">{categorias}</h6>
+  return <h6 className="esquerdo pt-2 menuIn">{categorias}</h6>
 }
 export default Esquerdo;

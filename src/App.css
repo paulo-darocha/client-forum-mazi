@@ -1,19 +1,22 @@
 :root {
-  --alt-min-tela: 1000px;
+  --alt-min-tela: 1400px;
   --border-color: gray;
   --border: solid 0.1em var(--border-color);
+  
 }
 
 .App {
+  min-height: 100%;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1400px;
   display: grid;
-  grid-template-columns: 0.7fr 0.7fr 1.9fr 0.7fr;
-  grid-template-rows: 2.8em 3fr;
+  grid-template-columns: 0.7fr 0.6fr 2fr 0.7fr;
+  grid-template-rows: 4em 3fr;
   grid-template-areas:
     "superior superior superior superior"
     "usuario esquerdo central direito";
   gap: 1px;
+  
 }
 
 li:not([data-slate-node="element"]) {
@@ -32,7 +35,8 @@ li:not([data-slate-node="element"]) {
 .usuario {
   grid-area: usuario;
   min-height: var(--alt-min-tela);
-  background-color: blue;
+  background-color: hsla(240, 92%, 45%, 0.699);
+  overflow-y: auto;
 
 }
 
@@ -69,15 +73,10 @@ li:not([data-slate-node="element"]) {
   overflow-y: auto;
 }
 
-.ReactModal__Html--open,
-.ReactModal__Body--open {
-  overflow: hidden;
-}
-
 @media screen and (max-width: 576px){
   .App {
     grid-template-columns: 1fr;
-    grid-template-rows: 2.4em 3fr;
+    grid-template-rows: 4em 3fr;
     grid-template-areas: 
       "superior"
       "central";
@@ -98,11 +97,11 @@ li:not([data-slate-node="element"]) {
     margin: 0 auto;
     max-width: 1200px;
     display: grid;
-    grid-template-columns: 0.6fr 0.6fr 1.7fr;
-    grid-template-rows: 2.7em 3fr;
+    grid-template-columns: 0.6fr 1.7fr 0.6fr;
+    grid-template-rows: 4em 3fr;
     grid-template-areas:
       "superior superior superior"
-      "usuario esquerdo central";
+      "esquerdo central direito";
     gap: 1px;
   }
 }
@@ -111,4 +110,24 @@ li:not([data-slate-node="element"]) {
   .modal-menu {
     top: .5em;
   }
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  opacity: 0;
+}
+
+.menuIn:hover {
+  scale: 2;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: gold;
 }

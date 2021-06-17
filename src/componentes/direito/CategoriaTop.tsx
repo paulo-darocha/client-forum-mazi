@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CategoriaTopico from "../../modelos/CategoriaTopico";
 
 interface CategoriaTopProps {
@@ -12,9 +13,11 @@ const CategoriaTop: FC<CategoriaTopProps> = ({categoriasTop}) => {
     if (categoriasTop && categoriasTop.length > 0) {
       const topicoElems = categoriasTop.map(top =>
         <li key={top.topicoId} className="p-1">
-          <span>
-            {top.titulo}
-          </span>
+          <Link to={`/topico/${top.topicoId}`} className="text-decoration-none">
+            <span className="fw-bold">
+              {top.titulo}
+            </span>
+          </Link>
         </li>);
         setTopicos(<ul>{topicoElems}</ul>)
     }

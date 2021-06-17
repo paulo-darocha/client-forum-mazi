@@ -11,10 +11,14 @@ const UsuarioEData: FC<UsuarioEDataProps> = ({
 }) => {
 
   // let data = modificadoEm?.toLocaleString("default");
-  let data = modificadoEm?.toLocaleString();
-  data = data?.substring(0, 10);
-  
+  // let data = modificadoEm?.toString();
+  // data = data?.substring(0, 10);
   // //console.log("DATA", data);
+
+  const data = () => {
+    let data = modificadoEm?.toLocaleString();
+    return data?.substring(0, 10);
+  }
 
   return (
     <span>
@@ -22,7 +26,7 @@ const UsuarioEData: FC<UsuarioEDataProps> = ({
         <strong>{usuario ? usuario : ""}</strong>
       </label>
       <label className="ps-3">
-        {data ? data : "DATA"}
+        {data()}
       </label>
     </span>
   );

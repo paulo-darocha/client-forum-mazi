@@ -86,6 +86,7 @@ const Login: FC<LoginProps> = ({ aberto, onClickAlterna }) => {
   return (
     <React.Fragment>
       <ReactModal
+        closeTimeoutMS={200}
         className="modal-menu"
         isOpen={aberto}
         onRequestClose={onClickAlterna}
